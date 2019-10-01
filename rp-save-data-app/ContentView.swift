@@ -9,13 +9,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello World")
+  @EnvironmentObject var storeObject : StoreObject
+  var body: some View {
+    annotationsView
+  }
+  
+  var annotationsView : some View {
+    self.storeObject.annotations.flatMap{ try? $0.get() }.map{
+      List($0, id: \.id) { (annotation)  in
+        Text(annotation.content)
+      }
     }
+  }
+  
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView().environmentObject(StoreObject(store: RESTStore()))
+  }
 }

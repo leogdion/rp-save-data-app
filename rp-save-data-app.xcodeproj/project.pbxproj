@@ -13,6 +13,12 @@
 		B3A5366D2343946B001BD974 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A5366C2343946B001BD974 /* Assets.xcassets */; };
 		B3A536702343946B001BD974 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A5366F2343946B001BD974 /* Preview Assets.xcassets */; };
 		B3A536732343946B001BD974 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A536712343946B001BD974 /* LaunchScreen.storyboard */; };
+		B3A5367B23439489001BD974 /* RPComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5367A23439489001BD974 /* RPComment.swift */; };
+		B3A5367D2343949A001BD974 /* RPAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5367C2343949A001BD974 /* RPAnnotation.swift */; };
+		B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5367E2343955F001BD974 /* RESTStore.swift */; };
+		B3A536812343956F001BD974 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536802343956F001BD974 /* CloudStore.swift */; };
+		B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A53682234395B5001BD974 /* RemoteStore.swift */; };
+		B3A536852343960C001BD974 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536842343960C001BD974 /* StoreObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		B3A5366F2343946B001BD974 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B3A536722343946B001BD974 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3A536742343946B001BD974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A5367A23439489001BD974 /* RPComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPComment.swift; sourceTree = "<group>"; };
+		B3A5367C2343949A001BD974 /* RPAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPAnnotation.swift; sourceTree = "<group>"; };
+		B3A5367E2343955F001BD974 /* RESTStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTStore.swift; sourceTree = "<group>"; };
+		B3A536802343956F001BD974 /* CloudStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStore.swift; sourceTree = "<group>"; };
+		B3A53682234395B5001BD974 /* RemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
+		B3A536842343960C001BD974 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,12 @@
 				B3A536712343946B001BD974 /* LaunchScreen.storyboard */,
 				B3A536742343946B001BD974 /* Info.plist */,
 				B3A5366E2343946B001BD974 /* Preview Content */,
+				B3A5367A23439489001BD974 /* RPComment.swift */,
+				B3A5367C2343949A001BD974 /* RPAnnotation.swift */,
+				B3A5367E2343955F001BD974 /* RESTStore.swift */,
+				B3A536802343956F001BD974 /* CloudStore.swift */,
+				B3A53682234395B5001BD974 /* RemoteStore.swift */,
+				B3A536842343960C001BD974 /* StoreObject.swift */,
 			);
 			path = "rp-save-data-app";
 			sourceTree = "<group>";
@@ -147,8 +165,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3A536672343946A001BD974 /* AppDelegate.swift in Sources */,
+				B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
+				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
+				B3A536812343956F001BD974 /* CloudStore.swift in Sources */,
 				B3A5366B2343946A001BD974 /* ContentView.swift in Sources */,
+				B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */,
+				B3A5367D2343949A001BD974 /* RPAnnotation.swift in Sources */,
+				B3A5367B23439489001BD974 /* RPComment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
