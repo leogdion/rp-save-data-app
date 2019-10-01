@@ -12,16 +12,26 @@ public struct NotImplementedError : Error {
   
 }
 
-public struct RESTStore : RemoteStore {
+public class RESTStore : RemoteStore {
+  
+  var annotationValues = [
+    RPAnnotation(id: UUID(), content: "1"),
+    RPAnnotation(id: UUID(), content: "2"),
+    RPAnnotation(id: UUID(), content: "3"),
+    RPAnnotation(id: UUID(), content: "4"),
+    RPAnnotation(id: UUID(), content: "5")
+  ]
+  
+  public func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
+    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+      self.annotationValues.append(annotation)
+      callback(nil)
+    }
+  }
+  
   public func annotations(_ callback: @escaping (Result<[RPAnnotation], Error>) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
-      callback(.success([
-        RPAnnotation(id: UUID(), content: "1"),
-        RPAnnotation(id: UUID(), content: "2"),
-        RPAnnotation(id: UUID(), content: "3"),
-        RPAnnotation(id: UUID(), content: "4"),
-        RPAnnotation(id: UUID(), content: "5")
-      ]))
+      callback(.success(self.annotationValues))
     }
   }
   

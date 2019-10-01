@@ -9,6 +9,15 @@
 import Foundation
 
 public struct RPAnnotation {
-  let id : UUID?
-  let content : String
+  public let id : UUID
+  public var content : String
+  
+  init (id: UUID? = nil, content : String? = nil) {
+    self.id = id ?? UUID()
+    self.content = content ?? ""
+  }
+}
+
+extension RPAnnotation : Identifiable {
+  
 }

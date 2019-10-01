@@ -9,7 +9,7 @@
 import Foundation
 
 public struct RPComment {
-  let id : UUID?
+  let id : UUID
   let annotationId : UUID
   let content : String
 }

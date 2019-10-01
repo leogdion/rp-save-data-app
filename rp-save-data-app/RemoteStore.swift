@@ -11,4 +11,6 @@ import Foundation
 public protocol RemoteStore {
   func annotations (_ callback: @escaping (Result<[RPAnnotation], Error>) -> Void)
   func comments (_ callback: @escaping (Result<[RPComment], Error>) -> Void)
+  
+  func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void)
 }

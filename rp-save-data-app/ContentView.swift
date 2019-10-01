@@ -11,17 +11,14 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var storeObject : StoreObject
   var body: some View {
-    annotationsView
-  }
-  
-  var annotationsView : some View {
-    self.storeObject.annotations.flatMap{ try? $0.get() }.map{
-      List($0, id: \.id) { (annotation)  in
-        Text(annotation.content)
-      }
+    NavigationView{
+      AnnotationsListView().navigationBarTitle("Annotations").navigationBarItems(trailing: HStack{
+        NavigationLink(destination: AnnotationItemView(editable: true), label: {
+          Text("Add")
+        })
+      })
     }
   }
-  
 }
 
 struct ContentView_Previews: PreviewProvider {

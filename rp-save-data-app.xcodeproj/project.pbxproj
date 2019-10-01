@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295702343C29A00C02302 /* AnnotationsListView.swift */; };
+		B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295722343C55000C02302 /* AnnotationItemView.swift */; };
 		B3A536672343946A001BD974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536662343946A001BD974 /* AppDelegate.swift */; };
 		B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536682343946A001BD974 /* SceneDelegate.swift */; };
 		B3A5366B2343946A001BD974 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5366A2343946A001BD974 /* ContentView.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B32295702343C29A00C02302 /* AnnotationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsListView.swift; sourceTree = "<group>"; };
+		B32295722343C55000C02302 /* AnnotationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationItemView.swift; sourceTree = "<group>"; };
 		B3A536632343946A001BD974 /* rp-save-data-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rp-save-data-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A536662343946A001BD974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A536682343946A001BD974 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 				B3A536802343956F001BD974 /* CloudStore.swift */,
 				B3A53682234395B5001BD974 /* RemoteStore.swift */,
 				B3A536842343960C001BD974 /* StoreObject.swift */,
+				B32295702343C29A00C02302 /* AnnotationsListView.swift */,
+				B32295722343C55000C02302 /* AnnotationItemView.swift */,
 			);
 			path = "rp-save-data-app";
 			sourceTree = "<group>";
@@ -166,7 +172,9 @@
 			files = (
 				B3A536672343946A001BD974 /* AppDelegate.swift in Sources */,
 				B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */,
+				B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
+				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
 				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
 				B3A536812343956F001BD974 /* CloudStore.swift in Sources */,
 				B3A5366B2343946A001BD974 /* ContentView.swift in Sources */,

@@ -31,6 +31,21 @@ public class StoreObject : ObservableObject {
         }
       }
     }
-    
+  }
+  
+  public func beginSave (_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
+    self.store.save(annotation) { (error) in
+      if let error = error {
+        callback(error)
+        return
+      }
+      self.store.annotations{
+        (annotations) in
+        DispatchQueue.main.async {
+          self.annotations = annotations
+          callback(nil)
+        }
+      }
+    }
   }
 }
