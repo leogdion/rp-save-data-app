@@ -29,10 +29,21 @@ struct AnnotationsListView: View {
       try? $0.get()
     }.map{
       (annotations : [RPAnnotation]) in
-      List(annotations) { (annotation) in
-        NavigationLink(annotation.content, destination: AnnotationItemView(annotation: annotation))
-      }
+      List(annotations, rowContent: AnnotationRowView.init)
     }
+  }
+}
+
+struct AnnotationRowView : View {
+  let annotation : RPAnnotation
+  var body: some View {
+    NavigationLink(destination: destination, label: {
+      Text(annotation.content)
+    })
+  }
+  
+  var destination : some View {
+    AnnotationItemView(annotation: self.annotation)
   }
 }
 

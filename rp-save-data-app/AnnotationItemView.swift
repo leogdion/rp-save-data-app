@@ -77,8 +77,9 @@ struct AnnotationItemView: View {
   @State var isBusy = false
   
   init (annotation : RPAnnotation? = nil, editable : Bool? = nil) {
-    self.editable = editable ?? (annotation == nil)
-    self.annotation = annotation ?? RPAnnotation()
+    
+    self.editable =  editable ?? (annotation == nil)
+    self._annotation = State(initialValue: (annotation ?? RPAnnotation()))
   }
   
   var body: some View {
