@@ -10,16 +10,23 @@ import SwiftUI
 
 struct AnnotationsListView: View {
   @EnvironmentObject var storeObject : StoreObject
+  
   var body: some View {
     ZStack{
+      busyView
       annotationsView
+    }
+  }
+  
+  var busyView : some View {
+    self.storeObject.annotations.not{
+      ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
   }
   
   var annotationsView : some View {
     self.storeObject.annotations.flatMap{
-      result in
-      try? result.get()
+      try? $0.get()
     }.map{
       (annotations : [RPAnnotation]) in
       List(annotations) { (annotation) in

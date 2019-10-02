@@ -44,6 +44,29 @@ extension Optional {
       return nil
     }
   }
+  
+  func not<T> (_ closure: () -> T) -> Optional<T> {
+    switch self {
+    case .none:
+      return closure()
+    default:
+      return nil
+    }
+  }
+}
+
+extension Bool {
+  func map(if value: Bool = true) -> Void? {
+    return (self == value) ? Void() : nil
+  }
+  
+  func map<T>(if value: Bool = true, _ closure: () -> T) -> T? {
+    
+    return self.map().map{
+      _ in
+      closure()
+    }
+  }
 }
 
 struct AnnotationItemView: View {
@@ -60,29 +83,26 @@ struct AnnotationItemView: View {
   
   var body: some View {
     ZStack{
+      readView
       editView
       busyView
     }
   }
   
   var busyView : some View {
-    let doView = isBusy ? Void() : nil
-    return doView.map{
+    return isBusy.map(){
       ActivityIndicator(isAnimating: $isBusy, style: .large)
     }
   }
   
-  var editView : some View {
-    let doView : Void?
-    
-    if editable {
-      doView = Void()
-    } else {
-      doView = nil
+  var readView : some View {
+    editable.map(if: false).and(isBusy.map(if: false)).map { _ in
+      Text(self.annotation.content)
     }
-    
-    return doView.map{
-      _ in
+  }
+  
+  var editView : some View {
+    editable.map().and(isBusy.map(if: false)).map {  _ in
       VStack{
       TextField("Content", text: self.$annotation.content)
         Button(action: saveItem, label: {

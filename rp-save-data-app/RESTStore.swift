@@ -24,7 +24,13 @@ public class RESTStore : RemoteStore {
   
   public func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
-      self.annotationValues.append(annotation)
+      if let index = self.annotationValues.firstIndex(where: {
+        $0.id == annotation.id
+      }) {
+        self.annotationValues[index] = annotation
+      } else {
+        self.annotationValues.append(annotation)
+      }
       callback(nil)
     }
   }
