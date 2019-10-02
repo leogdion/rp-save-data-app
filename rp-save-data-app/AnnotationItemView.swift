@@ -47,10 +47,11 @@ extension Optional {
 }
 
 struct AnnotationItemView: View {
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   @EnvironmentObject var storeObject : StoreObject
   let editable : Bool
   @State var annotation = RPAnnotation()
-  
+  @State var isBusy = false
   
   init (annotation : RPAnnotation? = nil, editable : Bool? = nil) {
     self.editable = editable ?? (annotation == nil)
@@ -60,6 +61,14 @@ struct AnnotationItemView: View {
   var body: some View {
     ZStack{
       editView
+      busyView
+    }
+  }
+  
+  var busyView : some View {
+    let doView = isBusy ? Void() : nil
+    return doView.map{
+      ActivityIndicator(isAnimating: $isBusy, style: .large)
     }
   }
   
@@ -84,12 +93,14 @@ struct AnnotationItemView: View {
   }
   
   func saveItem () {
+    self.isBusy = true
     self.storeObject.beginSave(self.annotation) {
       (error) in
+      self.isBusy = false
       if let error = error {
         return
       }
-      
+      self.presentationMode.wrappedValue.dismiss()
     }
   }
 }

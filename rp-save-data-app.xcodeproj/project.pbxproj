@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295702343C29A00C02302 /* AnnotationsListView.swift */; };
 		B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295722343C55000C02302 /* AnnotationItemView.swift */; };
+		B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */; };
 		B3A536672343946A001BD974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536662343946A001BD974 /* AppDelegate.swift */; };
 		B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536682343946A001BD974 /* SceneDelegate.swift */; };
 		B3A5366B2343946A001BD974 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5366A2343946A001BD974 /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		B32295702343C29A00C02302 /* AnnotationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsListView.swift; sourceTree = "<group>"; };
 		B32295722343C55000C02302 /* AnnotationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationItemView.swift; sourceTree = "<group>"; };
+		B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		B3A536632343946A001BD974 /* rp-save-data-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rp-save-data-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A536662343946A001BD974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A536682343946A001BD974 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				B3A536842343960C001BD974 /* StoreObject.swift */,
 				B32295702343C29A00C02302 /* AnnotationsListView.swift */,
 				B32295722343C55000C02302 /* AnnotationItemView.swift */,
+				B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */,
 			);
 			path = "rp-save-data-app";
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				B3A536672343946A001BD974 /* AppDelegate.swift in Sources */,
 				B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */,
 				B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */,
+				B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
 				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
 				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
@@ -318,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"rp-save-data-app/Preview Content\"";
-				DEVELOPMENT_TEAM = Z8V865KE5D;
+				DEVELOPMENT_TEAM = MLT7M394S7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "rp-save-data-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -338,7 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"rp-save-data-app/Preview Content\"";
-				DEVELOPMENT_TEAM = Z8V865KE5D;
+				DEVELOPMENT_TEAM = MLT7M394S7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "rp-save-data-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
