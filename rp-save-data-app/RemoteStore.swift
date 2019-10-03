@@ -13,4 +13,5 @@ public protocol RemoteStore {
   func comments (_ callback: @escaping (Result<[RPComment], Error>) -> Void)
   
   func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void)
+  func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void)
 }

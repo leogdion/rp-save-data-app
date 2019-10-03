@@ -48,4 +48,24 @@ public class StoreObject : ObservableObject {
       }
     }
   }
+  
+  public func delete(commentsWithIds commentIds: [UUID]) {
+    self.store.delete(commentsWithIds: commentIds) {
+      error in
+      if let error = error {
+        self.comments = .failure(error)
+        return
+      }
+      self.store.comments { (comments) in
+        DispatchQueue.main.async {
+          self.comments = comments.map {
+            [UUID : [RPComment]].init(grouping: $0, by: {
+              $0.annotationId
+            })
+          }
+        }
+      }
+      
+    }
+  }
 }

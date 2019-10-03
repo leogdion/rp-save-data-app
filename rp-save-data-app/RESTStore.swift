@@ -7,20 +7,46 @@
 //
 
 import Foundation
+import Fakery
 
 public struct NotImplementedError : Error {
   
 }
 
 public class RESTStore : RemoteStore {
+  public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+      self.commentValues = self.commentValues.filter{
+        !commentIds.contains($0.id)
+      }
+      callback(nil)
+    }
+  }
   
-  var annotationValues = [
-    RPAnnotation(id: UUID(), content: "1"),
-    RPAnnotation(id: UUID(), content: "2"),
-    RPAnnotation(id: UUID(), content: "3"),
-    RPAnnotation(id: UUID(), content: "4"),
-    RPAnnotation(id: UUID(), content: "5")
-  ]
+  
+  var annotationValues : [RPAnnotation]
+  var commentValues : [RPComment]
+  
+  init () {
+    let faker = Faker()
+    let count = Int.random(in: (7...15))
+    let annotationIds = (1...count).map{_ in
+      return UUID()
+    }
+    
+    self.commentValues = annotationIds.flatMap{
+      annotationId -> [RPComment] in
+      let count = Int.random(in: (7...15))
+      return (1...count).map{
+        _ in
+        RPComment(id: UUID(), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: (2...5))))
+      }
+    }
+    
+    self.annotationValues = annotationIds.map{
+      RPAnnotation(id: $0, content:  faker.lorem.words(amount: Int.random(in: (2...5))))
+    }
+  }
   
   public func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
@@ -42,7 +68,9 @@ public class RESTStore : RemoteStore {
   }
   
   public func comments(_ callback: @escaping (Result<[RPComment], Error>) -> Void) {
-    callback(.failure(NotImplementedError()))
+    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+      callback(.success(self.commentValues))
+    }
   }
   
   

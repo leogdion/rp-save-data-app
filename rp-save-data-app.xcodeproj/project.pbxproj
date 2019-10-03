@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295702343C29A00C02302 /* AnnotationsListView.swift */; };
 		B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32295722343C55000C02302 /* AnnotationItemView.swift */; };
 		B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */; };
+		B330705223456E2C00C741A3 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = B330705123456E2C00C741A3 /* Fakery */; };
+		B330705523458AC000C741A3 /* en-US.json in Resources */ = {isa = PBXBuildFile; fileRef = B330705323458ABF00C741A3 /* en-US.json */; };
+		B330705623458AC000C741A3 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = B330705423458AC000C741A3 /* en.json */; };
 		B3A536672343946A001BD974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536662343946A001BD974 /* AppDelegate.swift */; };
 		B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536682343946A001BD974 /* SceneDelegate.swift */; };
 		B3A5366B2343946A001BD974 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5366A2343946A001BD974 /* ContentView.swift */; };
@@ -28,6 +31,8 @@
 		B32295702343C29A00C02302 /* AnnotationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsListView.swift; sourceTree = "<group>"; };
 		B32295722343C55000C02302 /* AnnotationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationItemView.swift; sourceTree = "<group>"; };
 		B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		B330705323458ABF00C741A3 /* en-US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "en-US.json"; sourceTree = "<group>"; };
+		B330705423458AC000C741A3 /* en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
 		B3A536632343946A001BD974 /* rp-save-data-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rp-save-data-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A536662343946A001BD974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A536682343946A001BD974 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B330705223456E2C00C741A3 /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,8 @@
 		B3A536652343946A001BD974 /* rp-save-data-app */ = {
 			isa = PBXGroup;
 			children = (
+				B330705323458ABF00C741A3 /* en-US.json */,
+				B330705423458AC000C741A3 /* en.json */,
 				B3A536662343946A001BD974 /* AppDelegate.swift */,
 				B3A536682343946A001BD974 /* SceneDelegate.swift */,
 				B3A5366A2343946A001BD974 /* ContentView.swift */,
@@ -118,6 +126,9 @@
 			dependencies = (
 			);
 			name = "rp-save-data-app";
+			packageProductDependencies = (
+				B330705123456E2C00C741A3 /* Fakery */,
+			);
 			productName = "rp-save-data-app";
 			productReference = B3A536632343946A001BD974 /* rp-save-data-app.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +157,9 @@
 				Base,
 			);
 			mainGroup = B3A5365A2343946A001BD974;
+			packageReferences = (
+				B330705023456E2C00C741A3 /* XCRemoteSwiftPackageReference "Fakery" */,
+			);
 			productRefGroup = B3A536642343946A001BD974 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,8 +174,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B330705623458AC000C741A3 /* en.json in Resources */,
 				B3A536732343946B001BD974 /* LaunchScreen.storyboard in Resources */,
 				B3A536702343946B001BD974 /* Preview Assets.xcassets in Resources */,
+				B330705523458AC000C741A3 /* en-US.json in Resources */,
 				B3A5366D2343946B001BD974 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +394,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B330705023456E2C00C741A3 /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B330705123456E2C00C741A3 /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B330705023456E2C00C741A3 /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B3A5365B2343946A001BD974 /* Project object */;
 }

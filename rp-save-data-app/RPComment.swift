@@ -9,7 +9,11 @@
 import Foundation
 
 public struct RPComment {
-  let id : UUID
-  let annotationId : UUID
-  let content : String
+  public let id : UUID
+  public let annotationId : UUID
+  public let content : String
+}
+
+extension RPComment : Identifiable {
+  
 }
