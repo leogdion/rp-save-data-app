@@ -11,7 +11,7 @@ import SwiftUI
 struct AnnotationsListView: View {
   @EnvironmentObject var storeObject : StoreObject
   @State var isBusy = false
-  
+  @State var deleteQueue = Set<UUID>()
   var body: some View {
     ZStack{
       annotationsView
@@ -21,7 +21,7 @@ struct AnnotationsListView: View {
   
   var busyView : some View {
     isBusy.map().or(self.storeObject.annotations.not()).map{
-      ActivityIndicator(isAnimating: .constant(true), style: .large)
+      ActivityIndicator(isAnimating: .constant(true), style: .large).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).background(Color.white.opacity(0.5))
     }
   }
   
@@ -32,8 +32,10 @@ struct AnnotationsListView: View {
       (annotations : [RPAnnotation]) in
       //List(annotations, rowContent: AnnotationRowView.init)
       List{
-        ForEach(annotations, content: AnnotationRowView.init).onDelete(perform: self.delete)
-      }.blur(radius: isBusy ? 5.0 : 0.0)
+        ForEach(annotations, content: {
+          AnnotationRowView(annotation: $0).opacity(self.deleteQueue.contains($0.id) ? 0.5 : 1.0)
+        }).onDelete(perform: self.delete)
+      }
     }.navigationBarItems(trailing: HStack{
       NavigationLink(destination: AnnotationItemView(editable: true), label: {
         Text("Add")
@@ -51,9 +53,22 @@ struct AnnotationsListView: View {
     let ids = indicies.map{
       annotations[$0].id
     }
+    DispatchQueue.main.async {
+      self.deleteQueue.formUnion(ids)
+    }
+    
     self.isBusy = true
-    self.storeObject.delete(annotationsWithIds: ids) {_ in 
-      self.isBusy = false
+    self.storeObject.delete(annotationsWithIds: ids) {
+      error in
+      if let error = error {
+        
+      } else {
+        
+      }
+      DispatchQueue.main.async {
+        self.deleteQueue.subtract(ids)
+        self.isBusy = false
+      }
     }
   }
 }
