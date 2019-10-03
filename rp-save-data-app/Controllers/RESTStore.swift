@@ -43,20 +43,21 @@ public class RESTStore : RemoteStore {
     let faker = Faker()
     let count = Int.random(in: (7...15))
     let annotationIds = (1...count).map{_ in
-      return UUID()
+      return (UUID(), Date(timeIntervalSinceNow: .random(in: (-2750000...0))))
     }
     
     self.commentValues = annotationIds.flatMap{
-      annotationId -> [RPComment] in
+      args -> [RPComment] in
       let count = Int.random(in: (7...15))
+      let (annotationId, published) = args
       return (1...count).map{
         _ in
-        RPComment(id: UUID(), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: (2...5))))
+        RPComment(id: UUID(), published: faker.date.between(published, Date()), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: (2...5))))
       }
     }
     
     self.annotationValues = annotationIds.map{
-      RPAnnotation(id: $0, content:  faker.lorem.words(amount: Int.random(in: (2...5))))
+      RPAnnotation(id: $0.0, content:  faker.lorem.words(amount: Int.random(in: (2...5))), published: $0.1)
     }
   }
   
@@ -75,7 +76,7 @@ public class RESTStore : RemoteStore {
   
   public func annotations(_ callback: @escaping (Result<[RPAnnotation], Error>) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
-      callback(.success(self.annotationValues))
+      callback(.success(self.annotationValues.sorted(by: { $0.published > $1.published})))
     }
   }
   

@@ -22,7 +22,7 @@ struct AnnotationsListView: View {
   var busyView : some View {
     isBusy.map().or(self.storeObject.annotations.not()).map{
       ActivityIndicator(isAnimating: .constant(true), style: .large).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).background(Color.white.opacity(0.5))
-    }
+      }?.transition(.opacity)
   }
   
   var annotationsView : some View {
@@ -30,7 +30,6 @@ struct AnnotationsListView: View {
       try? $0.get()
     }.map{
       (annotations : [RPAnnotation]) in
-      //List(annotations, rowContent: AnnotationRowView.init)
       List{
         ForEach(annotations, content: {
           AnnotationRowView(annotation: $0).opacity(self.deleteQueue.contains($0.id) ? 0.5 : 1.0)
@@ -41,7 +40,7 @@ struct AnnotationsListView: View {
         Text("Add")
         }).disabled(isBusy)
       EditButton().disabled(isBusy)
-    })
+    }).transition(.opacity)
   }
   
   func delete (_ indicies: IndexSet) {

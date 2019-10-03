@@ -27,7 +27,9 @@ public class StoreObject : ObservableObject {
         self.comments = comments.map {
           [UUID : [RPComment]].init(grouping: $0, by: {
             $0.annotationId
-          })
+          }).mapValues{
+            $0.sorted(by: {$0.published > $1.published})
+          }
         }
       }
     }
@@ -61,7 +63,9 @@ public class StoreObject : ObservableObject {
           self.comments = comments.map {
             [UUID : [RPComment]].init(grouping: $0, by: {
               $0.annotationId
-            })
+            }).mapValues{
+              $0.sorted(by: {$0.published > $1.published})
+            }
           }
         }
       }

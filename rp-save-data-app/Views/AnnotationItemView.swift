@@ -16,11 +16,12 @@ struct AnnotationItemView: View {
   @State var editable : Bool
   @State var annotation = RPAnnotation()
   @State var isBusy = false
+  @State var editId : UUID?
   let existing : Bool
-  var comments : [RPComment]? {
+  var comments : [RPComment] {
     self.storeObject.comments.flatMap{
       try? $0.get()[self.annotation.id]
-    }
+    } ?? [RPComment]()
   }
   
   init (annotation : RPAnnotation? = nil, editable : Bool? = nil) {
@@ -40,14 +41,14 @@ struct AnnotationItemView: View {
   var busyView : some View {
     return isBusy.map(){
       ActivityIndicator(isAnimating: $isBusy, style: .large)
-    }
+      }?.transition(.opacity)
   }
   
   var readView : some View {
     editable.map(if: false).map { _ in
       VStack(alignment: .leading){
         Spacer(minLength: 10.0)
-        Text("Comments (\(self.comments?.count ?? 0))").font(.caption).underline().padding(.leading, 20.0)
+        Text("Comments (\(self.comments.count))").font(.caption).underline().padding(.leading, 20.0)
         commentsView
       }.navigationBarTitle(annotation.content).navigationBarItems(trailing: HStack{
         Button(action: self.add) {
@@ -58,7 +59,7 @@ struct AnnotationItemView: View {
         }
         EditButton().disabled(self.editable)
       }).blur(radius: isBusy ? 5.0 : 0.0)
-    }
+    }.transition(.opacity)
   }
   
   func rename () {
@@ -71,20 +72,20 @@ struct AnnotationItemView: View {
   
   
   var commentsView : some View {
-    self.comments.map{
-      comments in
       List{
         ForEach(comments) {
-          Text($0.content)
-        }.onDelete(perform: self.delete)
+         comment in
+          VStack(alignment: .leading) {
+            Text(FormatterProvider.default.string(from: comment.published)).font(.system(.caption))
+            Text(comment.content)
+          }.onLongPressGesture {
+            
+          }
+          }.onDelete(perform: self.delete)
       }
-    }
   }
   
   func delete (_ indicies : IndexSet) {
-    guard let comments = self.comments else {
-      return
-    }
     let ids = indicies.map{
       comments[$0].id
     }
@@ -94,13 +95,13 @@ struct AnnotationItemView: View {
   }
   
   var editView : some View {
-    editable.map().and(isBusy.map(if: false)).map {  _ in
-      VStack{
-      TextField("Content", text: self.$annotation.content)
-        Button(action: saveItem, label: {
-          Text("Save")
-        })
-      }
+    editable.map { 
+      VStack(alignment: .center){
+           TextField("Content", text: self.$annotation.content)
+             Button(action: saveItem, label: {
+               Text("Save")
+             })
+           }.padding(20)
     }
   }
   

@@ -29,6 +29,7 @@
 		B3A536852343960C001BD974 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536842343960C001BD974 /* StoreObject.swift */; };
 		B3ED9271234653BD00EE9CAE /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9270234653BD00EE9CAE /* Delay.swift */; };
 		B3ED9277234655A400EE9CAE /* AnnotationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */; };
+		B3F7FBB523469D020048133C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7FBB423469D020048133C /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		B3A536842343960C001BD974 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
 		B3ED9270234653BD00EE9CAE /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRowView.swift; sourceTree = "<group>"; };
+		B3F7FBB423469D020048133C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				B3A5367A23439489001BD974 /* RPComment.swift */,
 				B3A5367C2343949A001BD974 /* RPAnnotation.swift */,
 				B3ED9270234653BD00EE9CAE /* Delay.swift */,
+				B3F7FBB423469D020048133C /* DateFormatter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				B33649A523461D5E0072D108 /* Optional.swift in Sources */,
 				B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
+				B3F7FBB523469D020048133C /* DateFormatter.swift in Sources */,
 				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
 				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
 				B3A536812343956F001BD974 /* CloudStore.swift in Sources */,
