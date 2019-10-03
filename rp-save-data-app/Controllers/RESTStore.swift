@@ -16,7 +16,12 @@ public struct NotImplementedError : Error {
 public class RESTStore : RemoteStore {
   
   public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
-    
+    DispatchQueue.global().asyncAfter(deadline: .withDelay) {
+      self.annotationValues = self.annotationValues.filter{
+        !annotationIds.contains($0.id)
+       }
+       callback(nil)
+    }
   }
   public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
     

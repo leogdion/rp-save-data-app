@@ -14,8 +14,8 @@ struct AnnotationsListView: View {
   
   var body: some View {
     ZStack{
-      busyView
       annotationsView
+      busyView
     }
   }
   
@@ -33,12 +33,12 @@ struct AnnotationsListView: View {
       //List(annotations, rowContent: AnnotationRowView.init)
       List{
         ForEach(annotations, content: AnnotationRowView.init).onDelete(perform: self.delete)
-      }
+      }.blur(radius: isBusy ? 5.0 : 0.0)
     }.navigationBarItems(trailing: HStack{
       NavigationLink(destination: AnnotationItemView(editable: true), label: {
         Text("Add")
-      })
-      EditButton()
+        }).disabled(isBusy)
+      EditButton().disabled(isBusy)
     })
   }
   
