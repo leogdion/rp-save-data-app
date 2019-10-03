@@ -8,65 +8,7 @@
 
 import SwiftUI
 
-enum AnnotationItemViewMode {
-  case new, edit(UUID), read(UUID)
-  
-  init (id: UUID?, editable: Bool?) {
-    if let id = id {
-      if editable == true {
-        self = .edit(id)
-      } else {
-        self = .read(id)
-      }
-    } else {
-      self = .new
-    }
-  }
-  
-  var id : UUID? {
-    switch self {
-    case .edit(let id):
-      return id
-    case .read(let id):
-      return id
-    default:
-      return nil
-    }
-  }
-}
 
-extension Optional {
-  func and<T> (_ other : Optional<T>) -> Optional<(Wrapped, T)> {
-    switch (self,other) {
-    case (.some(let mine), .some(let another)):
-      return (mine, another)
-    default:
-      return nil
-    }
-  }
-  
-  func not<T> (_ closure: () -> T) -> Optional<T> {
-    switch self {
-    case .none:
-      return closure()
-    default:
-      return nil
-    }
-  }
-}
-
-extension Bool {
-  func map(if value: Bool = true) -> Void? {
-    (self == value) ? Void() : nil
-  }
-  
-  func map<T>(if value: Bool = true, _ closure: () -> T) -> T? {
-    self.map().map{
-      _ in
-      closure()
-    }
-  }
-}
 
 struct AnnotationItemView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

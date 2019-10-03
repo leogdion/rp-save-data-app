@@ -13,6 +13,8 @@
 		B330705223456E2C00C741A3 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = B330705123456E2C00C741A3 /* Fakery */; };
 		B330705523458AC000C741A3 /* en-US.json in Resources */ = {isa = PBXBuildFile; fileRef = B330705323458ABF00C741A3 /* en-US.json */; };
 		B330705623458AC000C741A3 /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = B330705423458AC000C741A3 /* en.json */; };
+		B33649A523461D5E0072D108 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33649A423461D5E0072D108 /* Optional.swift */; };
+		B33649A723461D6B0072D108 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33649A623461D6B0072D108 /* Bool.swift */; };
 		B3A536672343946A001BD974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536662343946A001BD974 /* AppDelegate.swift */; };
 		B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536682343946A001BD974 /* SceneDelegate.swift */; };
 		B3A5366B2343946A001BD974 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A5366A2343946A001BD974 /* ContentView.swift */; };
@@ -33,6 +35,8 @@
 		B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		B330705323458ABF00C741A3 /* en-US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "en-US.json"; sourceTree = "<group>"; };
 		B330705423458AC000C741A3 /* en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en.json; sourceTree = "<group>"; };
+		B33649A423461D5E0072D108 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		B33649A623461D6B0072D108 /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		B3A536632343946A001BD974 /* rp-save-data-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rp-save-data-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A536662343946A001BD974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A536682343946A001BD974 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B33649A323461D430072D108 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B33649A423461D5E0072D108 /* Optional.swift */,
+				B33649A623461D6B0072D108 /* Bool.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B3A5365A2343946A001BD974 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,7 @@
 		B3A536652343946A001BD974 /* rp-save-data-app */ = {
 			isa = PBXGroup;
 			children = (
+				B33649A323461D430072D108 /* Extensions */,
 				B330705323458ABF00C741A3 /* en-US.json */,
 				B330705423458AC000C741A3 /* en.json */,
 				B3A536662343946A001BD974 /* AppDelegate.swift */,
@@ -192,6 +206,7 @@
 				B3A536672343946A001BD974 /* AppDelegate.swift in Sources */,
 				B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */,
 				B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */,
+				B33649A523461D5E0072D108 /* Optional.swift in Sources */,
 				B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
 				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
@@ -201,6 +216,7 @@
 				B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */,
 				B3A5367D2343949A001BD974 /* RPAnnotation.swift in Sources */,
 				B3A5367B23439489001BD974 /* RPComment.swift in Sources */,
+				B33649A723461D6B0072D108 /* Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
