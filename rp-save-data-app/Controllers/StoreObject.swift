@@ -49,7 +49,7 @@ public class StoreObject : ObservableObject {
     }
   }
   
-  public func delete(commentsWithIds commentIds: [UUID]) {
+  public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
     self.store.delete(commentsWithIds: commentIds) {
       error in
       if let error = error {
@@ -63,6 +63,24 @@ public class StoreObject : ObservableObject {
               $0.annotationId
             })
           }
+        }
+      }
+      
+    }
+  }
+  
+  public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+    self.store.delete(annotationsWithIds: annotationIds) {
+      error in
+      if let error = error {
+        self.annotations = .failure(error)
+        callback(error)
+        return
+      }
+      self.store.annotations { (annotations) in
+        DispatchQueue.main.async {
+          self.annotations = annotations
+          callback(nil)
         }
       }
       

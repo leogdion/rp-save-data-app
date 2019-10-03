@@ -44,7 +44,7 @@ struct AnnotationItemView: View {
   }
   
   var readView : some View {
-    editable.map(if: false).and(isBusy.map(if: false)).map { _ in
+    editable.map(if: false).map { _ in
       VStack(alignment: .leading){
         Spacer(minLength: 10.0)
         Text("Comments (\(self.comments?.count ?? 0))").font(.caption).underline().padding(.leading, 20.0)
@@ -57,7 +57,7 @@ struct AnnotationItemView: View {
           Text(self.editable ? "Cancel" : "Rename")
         }
         EditButton().disabled(self.editable)
-      })
+      }).blur(radius: isBusy ? 5.0 : 0.0)
     }
   }
   
@@ -88,7 +88,9 @@ struct AnnotationItemView: View {
     let ids = indicies.map{
       comments[$0].id
     }
-    self.storeObject.delete(commentsWithIds: ids)
+    self.storeObject.delete(commentsWithIds: ids) {_ in 
+      
+    }
   }
   
   var editView : some View {

@@ -14,14 +14,21 @@ public struct NotImplementedError : Error {
 }
 
 public class RESTStore : RemoteStore {
+  
+  public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+    
+  }
   public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
-    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+    
+    DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       self.commentValues = self.commentValues.filter{
         !commentIds.contains($0.id)
       }
       callback(nil)
     }
   }
+  
+  
   
   
   var annotationValues : [RPAnnotation]
@@ -49,7 +56,7 @@ public class RESTStore : RemoteStore {
   }
   
   public func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
-    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+    DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       if let index = self.annotationValues.firstIndex(where: {
         $0.id == annotation.id
       }) {
@@ -62,13 +69,13 @@ public class RESTStore : RemoteStore {
   }
   
   public func annotations(_ callback: @escaping (Result<[RPAnnotation], Error>) -> Void) {
-    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+    DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       callback(.success(self.annotationValues))
     }
   }
   
   public func comments(_ callback: @escaping (Result<[RPComment], Error>) -> Void) {
-    DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
+    DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       callback(.success(self.commentValues))
     }
   }

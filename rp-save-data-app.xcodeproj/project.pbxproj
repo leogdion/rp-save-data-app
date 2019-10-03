@@ -27,6 +27,8 @@
 		B3A536812343956F001BD974 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536802343956F001BD974 /* CloudStore.swift */; };
 		B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A53682234395B5001BD974 /* RemoteStore.swift */; };
 		B3A536852343960C001BD974 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536842343960C001BD974 /* StoreObject.swift */; };
+		B3ED9271234653BD00EE9CAE /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9270234653BD00EE9CAE /* Delay.swift */; };
+		B3ED9277234655A400EE9CAE /* AnnotationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		B3A536802343956F001BD974 /* CloudStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStore.swift; sourceTree = "<group>"; };
 		B3A53682234395B5001BD974 /* RemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
 		B3A536842343960C001BD974 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
+		B3ED9270234653BD00EE9CAE /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,25 +97,17 @@
 		B3A536652343946A001BD974 /* rp-save-data-app */ = {
 			isa = PBXGroup;
 			children = (
-				B33649A323461D430072D108 /* Extensions */,
+				B3A5366C2343946B001BD974 /* Assets.xcassets */,
+				B3ED92742346556B00EE9CAE /* Controllers */,
 				B330705323458ABF00C741A3 /* en-US.json */,
 				B330705423458AC000C741A3 /* en.json */,
-				B3A536662343946A001BD974 /* AppDelegate.swift */,
-				B3A536682343946A001BD974 /* SceneDelegate.swift */,
-				B3A5366A2343946A001BD974 /* ContentView.swift */,
-				B3A5366C2343946B001BD974 /* Assets.xcassets */,
-				B3A536712343946B001BD974 /* LaunchScreen.storyboard */,
+				B33649A323461D430072D108 /* Extensions */,
 				B3A536742343946B001BD974 /* Info.plist */,
+				B3A536712343946B001BD974 /* LaunchScreen.storyboard */,
+				B3ED92732346555D00EE9CAE /* Models */,
 				B3A5366E2343946B001BD974 /* Preview Content */,
-				B3A5367A23439489001BD974 /* RPComment.swift */,
-				B3A5367C2343949A001BD974 /* RPAnnotation.swift */,
-				B3A5367E2343955F001BD974 /* RESTStore.swift */,
-				B3A536802343956F001BD974 /* CloudStore.swift */,
-				B3A53682234395B5001BD974 /* RemoteStore.swift */,
-				B3A536842343960C001BD974 /* StoreObject.swift */,
-				B32295702343C29A00C02302 /* AnnotationsListView.swift */,
-				B32295722343C55000C02302 /* AnnotationItemView.swift */,
-				B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */,
+				B3ED92752346557D00EE9CAE /* Protocols */,
+				B3ED92722346554900EE9CAE /* Views */,
 			);
 			path = "rp-save-data-app";
 			sourceTree = "<group>";
@@ -122,6 +118,48 @@
 				B3A5366F2343946B001BD974 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B3ED92722346554900EE9CAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3A5366A2343946A001BD974 /* ContentView.swift */,
+				B32295702343C29A00C02302 /* AnnotationsListView.swift */,
+				B32295722343C55000C02302 /* AnnotationItemView.swift */,
+				B32C5FE423441BFB00985FF5 /* ActivityIndicatorView.swift */,
+				B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3ED92732346555D00EE9CAE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3A5367A23439489001BD974 /* RPComment.swift */,
+				B3A5367C2343949A001BD974 /* RPAnnotation.swift */,
+				B3ED9270234653BD00EE9CAE /* Delay.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B3ED92742346556B00EE9CAE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3A536662343946A001BD974 /* AppDelegate.swift */,
+				B3A536682343946A001BD974 /* SceneDelegate.swift */,
+				B3A5367E2343955F001BD974 /* RESTStore.swift */,
+				B3A536802343956F001BD974 /* CloudStore.swift */,
+				B3A536842343960C001BD974 /* StoreObject.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B3ED92752346557D00EE9CAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B3A53682234395B5001BD974 /* RemoteStore.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3ED9277234655A400EE9CAE /* AnnotationRowView.swift in Sources */,
 				B3A536672343946A001BD974 /* AppDelegate.swift in Sources */,
 				B3A5367F2343955F001BD974 /* RESTStore.swift in Sources */,
 				B32295732343C55000C02302 /* AnnotationItemView.swift in Sources */,
@@ -212,6 +251,7 @@
 				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
 				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
 				B3A536812343956F001BD974 /* CloudStore.swift in Sources */,
+				B3ED9271234653BD00EE9CAE /* Delay.swift in Sources */,
 				B3A5366B2343946A001BD974 /* ContentView.swift in Sources */,
 				B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */,
 				B3A5367D2343949A001BD974 /* RPAnnotation.swift in Sources */,
