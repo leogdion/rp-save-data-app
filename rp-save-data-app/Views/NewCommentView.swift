@@ -9,30 +9,46 @@
 import SwiftUI
 
 struct NewCommentView: View {
-    @EnvironmentObject var storeObject : StoreObject
-    @State var comment : RPComment
-    
-    var body: some View {
-      VStack{
-        TextField("Content", text: $comment.content)
-        HStack{
-          Button("Cancel", action: self.cancel)
-          Button("Add", action: self.add)
-        }
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  @EnvironmentObject var storeObject : StoreObject
+  @State var comment : RPComment
+  @State var isBusy = false
+  
+  var body: some View {
+    ZStack{
+      busyView
+    VStack(alignment: .center) {
+      TextField("Content", text: $comment.content).disabled(isBusy)
+      HStack{
+        Button("Cancel", action: self.cancel).disabled(isBusy)
+        Button("Add", action: self.add).disabled(self.isBusy)
       }
-    }
-    
-    func add () {
+    }.padding(20.0).blur(radius: self.isBusy ? 2.0 : 0.0)
       
     }
     
-    func cancel () {
-      
+  }
+  
+  var busyView : some View {
+    isBusy.map {
+      ActivityIndicator(isAnimating: $isBusy, style: .large)
     }
+  }
+  
+  func add () {
+    self.isBusy = true
+    self.storeObject.beginSave(comment) { (_) in
+      self.presentationMode.wrappedValue.dismiss()
+    }
+  }
+  
+  func cancel () {
+    self.presentationMode.wrappedValue.dismiss()
+  }
 }
 
 struct NewCommentView_Previews: PreviewProvider {
-    static var previews: some View {
-      NewCommentView(comment: RPComment(id: UUID(), published: Date(), annotationId: UUID(), content: ""))
-    }
+  static var previews: some View {
+    NewCommentView(comment: RPComment(id: UUID(), published: Date(), annotationId: UUID(), content: ""))
+  }
 }

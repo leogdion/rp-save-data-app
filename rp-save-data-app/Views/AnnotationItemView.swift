@@ -47,7 +47,7 @@ struct AnnotationItemView: View {
       editView
       busyView
     }.sheet(item: $newComment, content: {
-      NewCommentView(comment: $0)
+      NewCommentView(comment: $0).environmentObject(self.storeObject)
     })
   }
   
