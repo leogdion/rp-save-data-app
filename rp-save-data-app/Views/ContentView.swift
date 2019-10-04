@@ -1,17 +1,9 @@
-//
-//  ContentView.swift
-//  rp-save-data-app
-//
-//  Created by Leo Dion on 10/1/19.
-//  Copyright © 2019 BrightDigit. All rights reserved.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var storeObject : StoreObject
+  @EnvironmentObject var storeObject: StoreObject
   var body: some View {
-    NavigationView{
+    NavigationView {
       AnnotationsListView().navigationBarTitle("Annotations")
     }
   }

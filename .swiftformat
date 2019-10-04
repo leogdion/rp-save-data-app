@@ -1,0 +1,16 @@
+--indent 2
+--disable trailingCommas 
+--indent 2 
+--allman false 
+--removelines enabled 
+--header strip 
+--insertlines disabled 
+--empty void 
+--ranges spaced 
+--trimwhitespace always 
+--linebreaks lf 
+--commas always 
+--comments indent 
+--ifdef indent 
+--hexliterals uppercase 
+--semicolons inline

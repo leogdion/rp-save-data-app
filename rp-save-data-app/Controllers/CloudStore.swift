@@ -1,18 +1,10 @@
-//
-//  CloudDatabase.swift
-//  rp-save-data-app
-//
-//  Created by Leo Dion on 10/1/19.
-//  Copyright © 2019 BrightDigit. All rights reserved.
-//
-
-import Foundation
 import Fakery
+import Foundation
 
-public class CloudStore : RemoteStore {
+public class CloudStore: RemoteStore {
   public func save(_ comment: RPComment, _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
-      if let index = self.commentValues.firstIndex(where: {$0.id == comment.id}) {
+      if let index = self.commentValues.firstIndex(where: { $0.id == comment.id }) {
         self.commentValues[index] = comment
       } else {
         self.commentValues.append(comment)
@@ -20,54 +12,50 @@ public class CloudStore : RemoteStore {
       callback(nil)
     }
   }
-  
-  
+
   public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
-      self.annotationValues = self.annotationValues.filter{
+      self.annotationValues = self.annotationValues.filter {
         !annotationIds.contains($0.id)
-       }
-       callback(nil)
+      }
+      callback(nil)
     }
   }
+
   public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
-    
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
-      self.commentValues = self.commentValues.filter{
+      self.commentValues = self.commentValues.filter {
         !commentIds.contains($0.id)
       }
       callback(nil)
     }
   }
-  
-  
-  
-  
-  var annotationValues : [RPAnnotation]
-  var commentValues : [RPComment]
-  
-  init () {
+
+  var annotationValues: [RPAnnotation]
+  var commentValues: [RPComment]
+
+  init() {
     let faker = Faker()
-    let count = Int.random(in: (7...15))
-    let annotationIds = (1...count).map{_ in
-      return (UUID(), Date(timeIntervalSinceNow: .random(in: (-2750000...0))))
+    let count = Int.random(in: 7 ... 15)
+    let annotationIds = (1 ... count).map { _ in
+      (UUID(), Date(timeIntervalSinceNow: .random(in: -2_750_000 ... 0)))
     }
-    
-    self.commentValues = annotationIds.flatMap{
+
+    commentValues = annotationIds.flatMap {
       args -> [RPComment] in
-      let count = Int.random(in: (7...15))
+      let count = Int.random(in: 7 ... 15)
       let (annotationId, published) = args
-      return (1...count).map{
+      return (1 ... count).map {
         _ in
-        RPComment(id: UUID(), published: faker.date.between(published, Date()), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: (2...5))))
+        RPComment(id: UUID(), published: faker.date.between(published, Date()), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: 2 ... 5)))
       }
     }
-    
-    self.annotationValues = annotationIds.map{
-      RPAnnotation(id: $0.0, content:  faker.lorem.words(amount: Int.random(in: (2...5))), published: $0.1)
+
+    annotationValues = annotationIds.map {
+      RPAnnotation(id: $0.0, content: faker.lorem.words(amount: Int.random(in: 2 ... 5)), published: $0.1)
     }
   }
-  
+
   public func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       if let index = self.annotationValues.firstIndex(where: {
@@ -80,18 +68,16 @@ public class CloudStore : RemoteStore {
       callback(nil)
     }
   }
-  
+
   public func annotations(_ callback: @escaping (Result<[RPAnnotation], Error>) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
-      callback(.success(self.annotationValues.sorted(by: { $0.published > $1.published})))
+      callback(.success(self.annotationValues.sorted(by: { $0.published > $1.published })))
     }
   }
-  
+
   public func comments(_ callback: @escaping (Result<[RPComment], Error>) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       callback(.success(self.commentValues))
     }
   }
-  
-  
 }
