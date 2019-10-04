@@ -1,3 +1,5 @@
+disabled_rules:
+  - closure_parameter_position
 identifier_name:
   excluded: # excluded via string array
     - id

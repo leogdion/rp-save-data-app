@@ -7,8 +7,11 @@ public class CloudStore: RemoteStore {
       if let index = self.commentValues.firstIndex(where: { $0.id == comment.id }) {
         self.commentValues[index] = comment
       } else {
-        let nextId = (self.commentValues.map { $0.id }.max() ?? 0) + 1
-        var newComment = RPComment(annotationId: comment.annotationId, id: nextId, published: Date(), content: comment.content)
+        let nextId = (self.commentValues.map{ $0.id }.max() ?? 0) + 1
+        let newComment = RPComment(
+          annotationId: comment.annotationId,
+          id: nextId,
+          published: Date(), content: comment.content)
         self.commentValues.append(newComment)
       }
       callback(nil)
@@ -65,8 +68,8 @@ public class CloudStore: RemoteStore {
       }) {
         self.annotationValues[index] = annotation
       } else {
-        let nextId = (self.annotationValues.map { $0.id }.max() ?? 0) + 1
-        var newAnnotation = RPAnnotation(id: nextId, content: annotation.content)
+        let nextId = (self.annotationValues.map{ $0.id }.max() ?? 0) + 1
+        let newAnnotation = RPAnnotation(id: nextId, content: annotation.content)
         self.annotationValues.append(newAnnotation)
       }
       callback(nil)

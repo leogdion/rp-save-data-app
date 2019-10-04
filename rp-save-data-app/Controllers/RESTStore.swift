@@ -1,30 +1,6 @@
 import Fakery
 import Foundation
 
-struct EmptyResultError: Error {}
-
-struct RESTAnnotation: Codable {
-  public let content: String
-  public let published: Date
-
-  init(_ annotation: RPAnnotation) {
-    content = annotation.content
-    published = annotation.published
-  }
-}
-
-struct RESTComment: Codable {
-  public let content: String
-  public let published: Date
-  public let annotationId: Int
-
-  init(_ comment: RPComment) {
-    content = comment.content
-    published = comment.published
-    annotationId = comment.annotationId
-  }
-}
-
 public class RESTStore: RemoteStore {
   let jsonDecoder: JSONDecoder = {
     let formatter = DateFormatter()

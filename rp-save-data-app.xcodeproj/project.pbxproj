@@ -29,6 +29,10 @@
 		B3A536812343956F001BD974 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536802343956F001BD974 /* CloudStore.swift */; };
 		B3A53683234395B5001BD974 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A53682234395B5001BD974 /* RemoteStore.swift */; };
 		B3A536852343960C001BD974 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A536842343960C001BD974 /* StoreObject.swift */; };
+		B3EC312D2347E47300A6888A /* EmptyResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EC312C2347E47300A6888A /* EmptyResultError.swift */; };
+		B3EC312F2347E48500A6888A /* RESTAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EC312E2347E48500A6888A /* RESTAnnotation.swift */; };
+		B3EC31312347E49A00A6888A /* RESTComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EC31302347E49A00A6888A /* RESTComment.swift */; };
+		B3EC31332347E53900A6888A /* ViewableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EC31322347E53900A6888A /* ViewableError.swift */; };
 		B3ED9271234653BD00EE9CAE /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9270234653BD00EE9CAE /* Delay.swift */; };
 		B3ED9277234655A400EE9CAE /* AnnotationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */; };
 		B3F7FBB523469D020048133C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7FBB423469D020048133C /* DateFormatter.swift */; };
@@ -59,6 +63,10 @@
 		B3A53682234395B5001BD974 /* RemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
 		B3A536842343960C001BD974 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
 		B3EC312B2347DCC100A6888A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B3EC312C2347E47300A6888A /* EmptyResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultError.swift; sourceTree = "<group>"; };
+		B3EC312E2347E48500A6888A /* RESTAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTAnnotation.swift; sourceTree = "<group>"; };
+		B3EC31302347E49A00A6888A /* RESTComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTComment.swift; sourceTree = "<group>"; };
+		B3EC31322347E53900A6888A /* ViewableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableError.swift; sourceTree = "<group>"; };
 		B3ED9270234653BD00EE9CAE /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		B3ED9276234655A400EE9CAE /* AnnotationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationRowView.swift; sourceTree = "<group>"; };
 		B3F7FBB423469D020048133C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -149,6 +157,9 @@
 				B3ED9270234653BD00EE9CAE /* Delay.swift */,
 				B3F7FBB423469D020048133C /* DateFormatter.swift */,
 				B35D3EC423479302009514FC /* NotImplementedError.swift */,
+				B3EC312C2347E47300A6888A /* EmptyResultError.swift */,
+				B3EC312E2347E48500A6888A /* RESTAnnotation.swift */,
+				B3EC31302347E49A00A6888A /* RESTComment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				B3A53682234395B5001BD974 /* RemoteStore.swift */,
+				B3EC31322347E53900A6888A /* ViewableError.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -300,8 +312,11 @@
 				B33649A523461D5E0072D108 /* Optional.swift in Sources */,
 				B32C5FE523441BFB00985FF5 /* ActivityIndicatorView.swift in Sources */,
 				B35D3EC523479302009514FC /* NotImplementedError.swift in Sources */,
+				B3EC31312347E49A00A6888A /* RESTComment.swift in Sources */,
 				B3A536692343946A001BD974 /* SceneDelegate.swift in Sources */,
 				B3F7FBB523469D020048133C /* DateFormatter.swift in Sources */,
+				B3EC31332347E53900A6888A /* ViewableError.swift in Sources */,
+				B3EC312D2347E47300A6888A /* EmptyResultError.swift in Sources */,
 				B32295712343C29A00C02302 /* AnnotationsListView.swift in Sources */,
 				B3A536852343960C001BD974 /* StoreObject.swift in Sources */,
 				B3A536812343956F001BD974 /* CloudStore.swift in Sources */,
@@ -312,6 +327,7 @@
 				B35D3EC3234770BE009514FC /* NewCommentView.swift in Sources */,
 				B3A5367B23439489001BD974 /* RPComment.swift in Sources */,
 				B33649A723461D6B0072D108 /* Bool.swift in Sources */,
+				B3EC312F2347E48500A6888A /* RESTAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
