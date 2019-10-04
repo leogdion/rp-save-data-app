@@ -9,9 +9,6 @@
 import Foundation
 import Fakery
 
-public struct NotImplementedError : Error {
-  
-}
 
 public class RESTStore : RemoteStore {
   public func save(_ comment: RPComment, _ callback: @escaping (Error?) -> Void) {

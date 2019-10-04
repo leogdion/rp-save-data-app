@@ -36,6 +36,7 @@ struct AnnotationsListView: View {
         }).onDelete(perform: self.delete)
       }
     }.navigationBarItems(trailing: HStack{
+      resetButton
       NavigationLink(destination: AnnotationItemView(editable: true), label: {
         Text("Add")
         }).disabled(isBusy)
@@ -43,6 +44,9 @@ struct AnnotationsListView: View {
     }).transition(.opacity)
   }
   
+  var resetButton : some View {
+    self.storeObject.canReset.
+  }
   func delete (_ indicies: IndexSet) {
     let annotationsOpt = self.storeObject.annotations.flatMap{ try? $0.get() }
     
