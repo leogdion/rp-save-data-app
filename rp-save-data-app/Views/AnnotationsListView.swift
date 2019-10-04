@@ -18,7 +18,7 @@ extension Error {
 struct AnnotationsListView: View {
   @EnvironmentObject var storeObject: StoreObject
   @State var isBusy = false
-  @State var deleteQueue = Set<UUID>()
+  @State var deleteQueue = Set<Int>()
   @State var errorData: ErrorData?
 
   var body: some View {

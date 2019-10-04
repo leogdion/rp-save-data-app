@@ -7,13 +7,15 @@ public class CloudStore: RemoteStore {
       if let index = self.commentValues.firstIndex(where: { $0.id == comment.id }) {
         self.commentValues[index] = comment
       } else {
-        self.commentValues.append(comment)
+        let nextId = (self.commentValues.map { $0.id }.max() ?? 0) + 1
+        var newComment = RPComment(annotationId: comment.annotationId, id: nextId, published: Date(), content: comment.content)
+        self.commentValues.append(newComment)
       }
       callback(nil)
     }
   }
 
-  public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+  public func delete(annotationsWithIds annotationIds: [Int], _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       self.annotationValues = self.annotationValues.filter {
         !annotationIds.contains($0.id)
@@ -22,7 +24,7 @@ public class CloudStore: RemoteStore {
     }
   }
 
-  public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+  public func delete(commentsWithIds commentIds: [Int], _ callback: @escaping (Error?) -> Void) {
     DispatchQueue.global().asyncAfter(deadline: .withDelay) {
       self.commentValues = self.commentValues.filter {
         !commentIds.contains($0.id)
@@ -37,21 +39,21 @@ public class CloudStore: RemoteStore {
   init() {
     let faker = Faker()
     let count = Int.random(in: 7 ... 15)
-    let annotationIds = (1 ... count).map { _ in
-      (UUID(), Date(timeIntervalSinceNow: .random(in: -2_750_000 ... 0)))
+    let annotationIdDates = (1 ... count).map { id in
+      (id, Date(timeIntervalSinceNow: .random(in: -2_750_000 ... 0)))
     }
 
-    commentValues = annotationIds.flatMap {
+    commentValues = annotationIdDates.flatMap {
       args -> [RPComment] in
       let count = Int.random(in: 7 ... 15)
       let (annotationId, published) = args
       return (1 ... count).map {
         _ in
-        RPComment(id: UUID(), published: faker.date.between(published, Date()), annotationId: annotationId, content: faker.lorem.words(amount: Int.random(in: 2 ... 5)))
+        RPComment(annotationId: annotationId, id: faker.number.increasingUniqueId(), published: faker.date.between(published, Date()), content: faker.lorem.words(amount: Int.random(in: 2 ... 5)))
       }
     }
 
-    annotationValues = annotationIds.map {
+    annotationValues = annotationIdDates.map {
       RPAnnotation(id: $0.0, content: faker.lorem.words(amount: Int.random(in: 2 ... 5)), published: $0.1)
     }
   }
@@ -63,7 +65,9 @@ public class CloudStore: RemoteStore {
       }) {
         self.annotationValues[index] = annotation
       } else {
-        self.annotationValues.append(annotation)
+        let nextId = (self.annotationValues.map { $0.id }.max() ?? 0) + 1
+        var newAnnotation = RPAnnotation(id: nextId, content: annotation.content)
+        self.annotationValues.append(newAnnotation)
       }
       callback(nil)
     }

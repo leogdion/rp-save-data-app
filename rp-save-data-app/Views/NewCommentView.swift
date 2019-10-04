@@ -36,9 +36,3 @@ struct NewCommentView: View {
     presentationMode.wrappedValue.dismiss()
   }
 }
-
-struct NewCommentView_Previews: PreviewProvider {
-  static var previews: some View {
-    NewCommentView(comment: RPComment(id: UUID(), published: Date(), annotationId: UUID(), content: ""))
-  }
-}

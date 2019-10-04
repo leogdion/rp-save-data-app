@@ -7,9 +7,9 @@ struct AnnotationItemView: View {
   @State var editable: Bool
   @State var annotation = RPAnnotation()
   @State var isBusy = false
-  @State var deleteQueue = Set<UUID>()
+  @State var deleteQueue = Set<Int>()
   @State var newComment: RPComment?
-  @State var editId: UUID? {
+  @State var editId: Int? {
     didSet {
       if let comment = self.editId.flatMap({ id in self.comments.first { $0.id == id } }) {
         editContent = comment.content
@@ -73,7 +73,7 @@ struct AnnotationItemView: View {
   }
 
   func add() {
-    newComment = RPComment(id: UUID(), published: Date(), annotationId: annotation.id, content: "")
+    newComment = RPComment(annotationId: annotation.id)
   }
 
   var commentsView: some View {

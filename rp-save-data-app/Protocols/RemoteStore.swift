@@ -13,6 +13,6 @@ public protocol RemoteStore {
 
   // MARK: Delete Methods
 
-  func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void)
-  func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void)
+  func delete(commentsWithIds commentIds: [Int], _ callback: @escaping (Error?) -> Void)
+  func delete(annotationsWithIds annotationIds: [Int], _ callback: @escaping (Error?) -> Void)
 }

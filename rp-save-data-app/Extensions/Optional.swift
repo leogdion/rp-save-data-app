@@ -39,6 +39,16 @@ extension Optional {
 }
 
 extension Result {
+  init(success: Success?, error: Failure?, defaultError: Failure) {
+    if let error = error {
+      self = .failure(error)
+    } else if let success = success {
+      self = .success(success)
+    } else {
+      self = .failure(defaultError)
+    }
+  }
+
   var error: Failure? {
     if case let .failure(error) = self {
       return error

@@ -3,7 +3,7 @@ import Foundation
 public class StoreObject: ObservableObject {
   let store: RemoteStore
   @Published var annotations: Result<[RPAnnotation], Error>?
-  @Published var comments: Result<[UUID: [RPComment]], Error>?
+  @Published var comments: Result<[Int: [RPComment]], Error>?
 
   init(store: RemoteStore) {
     self.store = store
@@ -17,7 +17,7 @@ public class StoreObject: ObservableObject {
       comments in
       DispatchQueue.main.async {
         self.comments = comments.map {
-          [UUID: [RPComment]].init(grouping: $0, by: {
+          [Int: [RPComment]].init(grouping: $0, by: {
             $0.annotationId
           }).mapValues {
             $0.sorted(by: { $0.published > $1.published })
@@ -53,7 +53,7 @@ public class StoreObject: ObservableObject {
         comments in
         DispatchQueue.main.async {
           self.comments = comments.map {
-            [UUID: [RPComment]].init(grouping: $0, by: {
+            [Int: [RPComment]].init(grouping: $0, by: {
               $0.annotationId
             }).mapValues {
               $0.sorted(by: { $0.published > $1.published })
@@ -65,7 +65,7 @@ public class StoreObject: ObservableObject {
     }
   }
 
-  public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+  public func delete(commentsWithIds commentIds: [Int], _ callback: @escaping (Error?) -> Void) {
     store.delete(commentsWithIds: commentIds) {
       error in
       if let error = error {
@@ -76,7 +76,7 @@ public class StoreObject: ObservableObject {
       self.store.comments { comments in
         DispatchQueue.main.async {
           self.comments = comments.map {
-            [UUID: [RPComment]].init(grouping: $0, by: {
+            [Int: [RPComment]].init(grouping: $0, by: {
               $0.annotationId
             }).mapValues {
               $0.sorted(by: { $0.published > $1.published })
@@ -88,7 +88,7 @@ public class StoreObject: ObservableObject {
     }
   }
 
-  public func delete(annotationsWithIds annotationIds: [UUID], _ callback: @escaping (Error?) -> Void) {
+  public func delete(annotationsWithIds annotationIds: [Int], _ callback: @escaping (Error?) -> Void) {
     store.delete(annotationsWithIds: annotationIds) {
       error in
       if let error = error {
