@@ -51,6 +51,28 @@ public class StoreObject : ObservableObject {
     }
   }
   
+  public func beginSave (_ comment: RPComment, _ callback: @escaping (Error?) -> Void) {
+    self.store.save(comment) { (error) in
+      if let error = error {
+        callback(error)
+        return
+      }
+     self.store.comments {
+        (comments) in
+        DispatchQueue.main.async {
+          self.comments = comments.map {
+            [UUID : [RPComment]].init(grouping: $0, by: {
+              $0.annotationId
+            }).mapValues{
+              $0.sorted(by: {$0.published > $1.published})
+            }
+          }
+          callback(nil)
+        }
+      }
+    }
+  }
+  
   public func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void) {
     self.store.delete(commentsWithIds: commentIds) {
       error in

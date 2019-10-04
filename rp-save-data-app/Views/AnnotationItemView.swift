@@ -16,8 +16,18 @@ struct AnnotationItemView: View {
   @State var editable : Bool
   @State var annotation = RPAnnotation()
   @State var isBusy = false
-  @State var editId : UUID?
+  @State var editId : UUID? {
+    didSet {
+      if let comment = self.editId.flatMap({ id in self.comments.first{$0.id == id} }) {
+        self.editContent = comment.content
+      } else {
+        self.editContent = ""
+      }
+    }
+  }
+  @State var editContent : String = ""
   let existing : Bool
+  
   var comments : [RPComment] {
     self.storeObject.comments.flatMap{
       try? $0.get()[self.annotation.id]
@@ -76,13 +86,57 @@ struct AnnotationItemView: View {
         ForEach(comments) {
          comment in
           VStack(alignment: .leading) {
-            Text(FormatterProvider.default.string(from: comment.published)).font(.system(.caption))
-            Text(comment.content)
-          }.onLongPressGesture {
-            
+//            Text(FormatterProvider.default.string(from: comment.published)).font(.system(.caption))
+//            Text(comment.content)
+            self.row(forComment: comment)
           }
           }.onDelete(perform: self.delete)
       }
+  }
+  
+  @ViewBuilder
+  func row(forComment comment: RPComment) -> some View{
+    VStack(alignment: .leading){
+
+      Text(FormatterProvider.default.string(from: comment.published)).font(.system(.caption))
+      if comment.id == self.editId {
+        HStack{
+          TextField("content", text: self.$editContent)
+          Spacer()
+          Button(action: self.commitEdit, label: {
+            Text("Done").padding([.horizontal], 5.0)
+          })
+        }
+      } else {
+        HStack{
+          Text(comment.content)
+          Spacer()
+        }.onTapGesture {
+          self.editId = comment.id
+        }
+      }
+    }
+  }
+  
+  func commitEdit () {
+    let commentOpt = self.comments.first{
+      $0.id == self.editId
+    }
+    guard var comment = commentOpt else {
+      self.editId = nil
+      return
+    }
+    comment.content = self.editContent
+    self.isBusy = true
+    self.storeObject.beginSave(comment) { (error) in
+      if let error = error {
+        self.editId = nil
+        self.isBusy = false
+        return
+      }
+      self.editId = nil
+      self.isBusy = false
+    }
   }
   
   func delete (_ indicies : IndexSet) {

@@ -16,7 +16,7 @@ public protocol RemoteStore {
   
   // MARK: Upsert (Create or Replace) Methods
   func save(_ annotation: RPAnnotation, _ callback: @escaping (Error?) -> Void)
-  //func save(_ comment: RPComment, _ callback: @escaping (Error?) -> Void)
+  func save(_ comment: RPComment, _ callback: @escaping (Error?) -> Void)
   
   // MARK: Delete Methods
   func delete(commentsWithIds commentIds: [UUID], _ callback: @escaping (Error?) -> Void)
