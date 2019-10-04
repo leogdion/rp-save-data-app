@@ -8,14 +8,15 @@
 
 import SwiftUI
 
-
-
 struct AnnotationItemView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  @Environment(\.editMode) var editMode
   @EnvironmentObject var storeObject : StoreObject
   @State var editable : Bool
   @State var annotation = RPAnnotation()
   @State var isBusy = false
+  @State var deleteQueue = Set<UUID>()
+  @State var newComment : RPComment?
   @State var editId : UUID? {
     didSet {
       if let comment = self.editId.flatMap({ id in self.comments.first{$0.id == id} }) {
@@ -45,12 +46,14 @@ struct AnnotationItemView: View {
       readView
       editView
       busyView
-    }
+    }.sheet(item: $newComment, content: {
+      NewCommentView(comment: $0)
+    })
   }
   
   var busyView : some View {
     return isBusy.map(){
-      ActivityIndicator(isAnimating: $isBusy, style: .large)
+      ActivityIndicator(isAnimating: $isBusy, style: .large).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).background(Color.white.opacity(0.5))
       }?.transition(.opacity)
   }
   
@@ -77,7 +80,7 @@ struct AnnotationItemView: View {
   }
   
   func add () {
-    
+    self.newComment = RPComment(id: UUID(), published: Date(), annotationId: self.annotation.id, content: "")
   }
   
   
@@ -86,8 +89,6 @@ struct AnnotationItemView: View {
         ForEach(comments) {
          comment in
           VStack(alignment: .leading) {
-//            Text(FormatterProvider.default.string(from: comment.published)).font(.system(.caption))
-//            Text(comment.content)
             self.row(forComment: comment)
           }
           }.onDelete(perform: self.delete)
@@ -105,17 +106,25 @@ struct AnnotationItemView: View {
           Spacer()
           Button(action: self.commitEdit, label: {
             Text("Done").padding([.horizontal], 5.0)
-          })
+            })
         }
       } else {
-        HStack{
-          Text(comment.content)
-          Spacer()
-        }.onTapGesture {
-          self.editId = comment.id
-        }
+       readRow(forComment: comment)
       }
-    }
+    }.opacity(self.deleteQueue.contains(comment.id) ? 0.5 : 1.0)
+  }
+  
+  func readRow(forComment comment: RPComment) -> some View{
+    HStack{
+       Text(comment.content)
+       Spacer()
+     }.onTapGesture {
+      
+      if self.editMode?.wrappedValue == .inactive {
+        self.editId = comment.id
+      }
+      }
+    
   }
   
   func commitEdit () {
@@ -143,8 +152,16 @@ struct AnnotationItemView: View {
     let ids = indicies.map{
       comments[$0].id
     }
-    self.storeObject.delete(commentsWithIds: ids) {_ in 
+    DispatchQueue.main.async {
+      self.deleteQueue.formUnion(ids)
+      self.isBusy = true
+    }
+    self.storeObject.delete(commentsWithIds: ids) {error in
       
+      DispatchQueue.main.async {
+        self.deleteQueue.subtract(ids)
+        self.isBusy = false
+      }
     }
   }
   

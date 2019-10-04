@@ -78,6 +78,7 @@ public class StoreObject : ObservableObject {
       error in
       if let error = error {
         self.comments = .failure(error)
+        callback(error)
         return
       }
       self.store.comments { (comments) in
@@ -89,6 +90,7 @@ public class StoreObject : ObservableObject {
               $0.sorted(by: {$0.published > $1.published})
             }
           }
+          callback(nil)
         }
       }
       

@@ -65,7 +65,7 @@ struct AnnotationsListView: View {
         
       }
       DispatchQueue.main.async {
-        self.deleteQueue.subtract(ids)
+          self.deleteQueue.subtract(ids)
         self.isBusy = false
       }
     }
