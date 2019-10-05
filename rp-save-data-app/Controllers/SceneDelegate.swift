@@ -6,11 +6,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var remoteStoreTypes: [String: () -> (RemoteStore)] = ["rest": { RESTStore() }, "cloud": { CloudStore() }]
   func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-
     // Create the SwiftUI view that provides the window contents.
+
+    // get the remote store based on the environment variables
     let store = ProcessInfo.processInfo.environment["REMOTE_STORE"].flatMap {
       self.remoteStoreTypes[$0.lowercased()]
     }.map {
@@ -28,12 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
   }
 
-  func sceneDidDisconnect(_: UIScene) {
-    // Called as the scene is being released by the system.
-    // This occurs shortly after the scene enters the background, or when its session is discarded.
-    // Release any resources associated with this scene that can be re-created the next time the scene connects.
-    // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
-  }
+  func sceneDidDisconnect(_: UIScene) {}
 
   func sceneDidBecomeActive(_: UIScene) {
     // Called when the scene has moved from an inactive state to an active state.

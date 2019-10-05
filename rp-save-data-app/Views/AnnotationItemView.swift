@@ -46,7 +46,15 @@ struct AnnotationItemView: View {
 
   var busyView: some View {
     return isBusy.map {
-      ActivityIndicator(isAnimating: $isBusy, style: .large).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center).background(Color.white.opacity(0.5))
+      ActivityIndicator(isAnimating: $isBusy, style: .large)
+        .frame(
+          minWidth: 0,
+          maxWidth: .infinity,
+          minHeight: 0,
+          maxHeight: .infinity,
+          alignment: .center
+        )
+        .background(Color.white.opacity(0.5))
     }?.transition(.opacity)
   }
 
